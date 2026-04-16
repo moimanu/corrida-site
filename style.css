@@ -1,0 +1,350 @@
+:root {
+    --primary-blue: #1b4582;
+    --secondary-gold: #e2a938;
+    --bg-light: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-main: #334155;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+
+    /* Status Colors */
+    --status-aberto: #10b981;
+    --status-fechado: #ef4444;
+    --status-realizado: #3b82f6;
+    --status-cancelado: #64748b;
+    --status-breve: #f59e0b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    flex: 1;
+}
+
+/* Header & Nav (Mobile First) */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: white;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-img {
+    height: 30px;
+    width: auto;
+    color: var(--primary-blue);
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    color: var(--secondary-gold);
+    cursor: pointer;
+    display: block;
+}
+
+.nav-menu {
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    padding: 1rem 0;
+    border-bottom: solid 1px var(--border-color);
+}
+
+.nav-menu.active {
+    display: block;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0.5rem;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: var(--secondary-gold);
+}
+
+/* Pages & Typography */
+h1,
+h2 {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* Grid & Cards */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    border-color: var(--secondary-gold);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 10px;
+}
+
+.card h3 {
+    color: var(--primary-blue);
+    margin-bottom: 0;
+    font-size: 1.25rem;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+.info-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+    color: var(--primary-blue);
+}
+
+.icon-sm {
+    width: 16px;
+    height: 16px;
+}
+
+/* Badges e Botões */
+.badge {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 20px;
+    color: white;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.badge-aberto {
+    background-color: var(--status-aberto);
+}
+
+.badge-fechado {
+    background-color: var(--status-fechado);
+}
+
+.badge-realizado {
+    background-color: var(--status-realizado);
+}
+
+.badge-breve {
+    background-color: var(--status-breve);
+}
+
+.badge-cancelado {
+    background-color: var(--status-cancelado);
+    text-decoration: line-through;
+}
+
+.badge-default {
+    background-color: var(--text-muted);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--primary-blue);
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 20px 0px 20px 0px;
+    font-weight: bold;
+    text-align: center;
+    transition: filter 0.3s;
+}
+
+.btn:hover {
+    filter: brightness(1.1);
+}
+
+.btn-disabled {
+    background-color: var(--border-color);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+/* Footer */
+footer {
+    background: white;
+    padding: 0px;
+    border-top: 1px solid var(--accent);
+}
+
+.footer-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;    
+    margin-bottom: 3rem;
+}
+
+.footer-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.footer-title {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+.copyright {
+    padding-top: 2rem;
+    border-top: 1px solid var(--accent);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* Responsividade (Desktop) */
+@media (min-width: 768px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .nav-menu {
+        display: block;
+        position: static;
+        width: auto;
+        background: transparent;
+        padding: 0;
+        border-color: transparent;
+    }
+
+    .nav-menu ul {
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+
+    .footer-grid {
+       gap: 4rem;
+       flex-direction: row;
+    }
+
+    footer {
+        padding: 5rem 0 2rem;
+    }
+}
