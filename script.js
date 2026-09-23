@@ -1,18 +1,26 @@
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSRW1G3T5q7ele5gAbCInVQRjcMXA3-wWYyuA4P-WS0oFPJUICLSZ6OnWoInTcfw_PB0_UgIMgygMDI/pub?gid=0&single=true&output=csv";
-
 // --- INTERFACE & MENU ---
 
-document.getElementById('menu-toggle').addEventListener('click', () => {
-    document.getElementById('nav-menu').classList.toggle('active');
-});
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
 
-document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', () => {
-        document.getElementById('nav-menu').classList.remove('active');
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+            if (navMenu) navMenu.classList.remove('active');
+        });
     });
 });
 
 // --- LÓGICA DE DADOS (CSV) ---
+
+const DATA_SOURCE_URL = (typeof window !== 'undefined' && window.SPREADSHEET_URL) 
+    ? window.SPREADSHEET_URL 
+    : 'exemplo.csv';
 
 function parseCSVRow(row) {
     const matches = row.match(/(\s*"[^"]+"\s*|\s*[^,]+|,)(?=,|$)/g);
@@ -22,7 +30,10 @@ function parseCSVRow(row) {
 
 async function fetchCorridas() {
     try {
-        const response = await fetch(SHEET_CSV_URL);
+        const response = await fetch(DATA_SOURCE_URL);
+        if (!response.ok) {
+            throw new Error(`Falha na requisição: ${response.status}`);
+        }
         const data = await response.text();
         const rows = data.split('\n').slice(1);
         
